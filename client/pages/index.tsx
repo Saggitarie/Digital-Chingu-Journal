@@ -42,7 +42,7 @@ export default function Home(): React.ReactElement {
   return (
     <div>
       <Head>
-        <title>I Theater</title>
+        <title>Changed Title</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -53,7 +53,7 @@ export default function Home(): React.ReactElement {
       <div className="wrapper">
         <div className="search">
           <div>
-            <h1 className="title">ITheater</h1>
+            <h1 className="title">ITheater Update</h1>
           </div>
           <div>
             <input
