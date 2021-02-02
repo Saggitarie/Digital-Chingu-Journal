@@ -1,11 +1,14 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthState } from '../stateManagement/auth/slice';
 import axios from 'axios';
 import { MovieListType } from '../interface/movie';
 
 export default function Home(): React.ReactElement {
   const [movieName, setMovieName] = useState<string>('');
   const [movieList, setMovieList] = useState<Array<MovieListType>>([]);
+  const currentState = useSelector((state: { authentication: AuthState }) => state).authentication;
 
   useEffect(() => {
     console.log(movieList);
