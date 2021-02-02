@@ -37,8 +37,6 @@ export default function Home(): React.ReactElement {
       movieName,
     });
 
-    console.log('Current Login State ', currentState);
-
     const { data } = await axios.get('/api/movielist');
 
     setMovieList(data);
