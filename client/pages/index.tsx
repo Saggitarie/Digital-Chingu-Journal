@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AuthState } from '../stateManagement/auth/slice';
 import axios from 'axios';
 import { MovieListType } from '../interface/movie';
@@ -18,7 +18,7 @@ export default function Home(): React.ReactElement {
     let tmp: any = '';
 
     const fetchMovieList = async (): Promise<void> => {
-      const { data } = await axios.get('/api/movielist');
+      const { data } = await axios.get('/api/user');
       tmp = data;
 
       setMovieList(tmp);
@@ -33,11 +33,11 @@ export default function Home(): React.ReactElement {
   }
 
   async function onClickWatchLater() {
-    await axios.post('/api/movielist', {
-      movieName,
-    });
+    // await axios.post('/api/movielist', {
+    //   movieName,
+    // });
 
-    const { data } = await axios.get('/api/movielist');
+    const { data } = await axios.get('/api/post');
 
     setMovieList(data);
   }
