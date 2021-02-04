@@ -1,13 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
-import { PostInterface } from './interfaces/post.interface';
+import { ApiTags } from '@nestjs/swagger';
+import { Post } from './entities/post.entity';
 import { PostService } from './post.service';
+// import { PostDto } from './dto/post.dto';
 
 @Controller('post')
+@ApiTags('posts')
 export class PostController {
   constructor(private postService: PostService) {}
 
   @Get()
-  fetchAllPosts(): Promise<PostInterface[]> {
+  fetchAllPosts(): Promise<Post[]> {
     return this.postService.fetchAllPosts();
   }
 }
