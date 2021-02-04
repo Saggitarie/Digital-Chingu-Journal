@@ -23,8 +23,8 @@
   },
   "include": [
     "pages/**/*",
-    "interface/**/*",
-    "stateManagement/**/*"
+    "type/**/*",
+    "app/stateManagement/**/*"
   ],
   "exclude": [
     "node_modules"

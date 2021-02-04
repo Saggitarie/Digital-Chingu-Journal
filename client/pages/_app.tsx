@@ -1,9 +1,9 @@
 import React from 'react';
 import type { AppProps /*, AppContext */ } from 'next/app';
 import { Provider } from 'react-redux';
-import createStore from '../stateManagement/createStore';
+import createStore from '../app/stateManagement/createStore';
 
-import '../styles/global.scss';
+import '../app/styles/global.scss';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (

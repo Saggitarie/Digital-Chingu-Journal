@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AuthState } from '../stateManagement/auth/slice';
+import { useSelector } from 'react-redux';
+import { AuthState } from '../app/stateManagement/auth/slice';
 import axios from 'axios';
-import { MovieListType } from '../interface/movie';
+import { MovieListType } from '../app/type/movie';
 
 export default function Home(): React.ReactElement {
-  const [movieName, setMovieName] = useState<string>('');
+  const [username, setUserName] = useState<string>('');
   const [movieList, setMovieList] = useState<Array<MovieListType>>([]);
   const currentState = useSelector((state: { authentication: AuthState }) => state).authentication;
 
@@ -18,7 +18,7 @@ export default function Home(): React.ReactElement {
     let tmp: any = '';
 
     const fetchMovieList = async (): Promise<void> => {
-      const { data } = await axios.get('/api/movielist');
+      const { data } = await axios.get('/api/user');
       tmp = data;
 
       setMovieList(tmp);
@@ -29,15 +29,15 @@ export default function Home(): React.ReactElement {
 
   function onMovieNameInput(event: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = (event.target as HTMLInputElement).value;
-    setMovieName(inputValue);
+    setUserName(inputValue);
   }
 
   async function onClickWatchLater() {
-    await axios.post('/api/movielist', {
-      movieName,
-    });
+    // await axios.post('/api/movielist', {
+    //   movieName,
+    // });
 
-    const { data } = await axios.get('/api/movielist');
+    const { data } = await axios.get('/api/post');
 
     setMovieList(data);
   }
@@ -61,7 +61,14 @@ export default function Home(): React.ReactElement {
           <div>
             <input
               className="input u-margin-bottom-medium"
-              value={movieName}
+              value={username}
+              onChange={onMovieNameInput}
+            />
+          </div>
+          <div>
+            <input
+              className="input u-margin-bottom-medium"
+              value={username}
               onChange={onMovieNameInput}
             />
           </div>
