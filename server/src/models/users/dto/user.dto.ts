@@ -1,12 +1,11 @@
-import { IsInt, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UserDto {
-  @IsInt()
-  readonly id: number;
-
+export class CreateUserDto {
   @IsString()
+  @IsNotEmpty()
   readonly username: string;
 
   @IsString()
+  @IsNotEmpty()
   readonly password: string;
 }

@@ -1,12 +1,11 @@
-import { IsInt, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class PostDto {
-  @IsInt()
-  id: number;
-
+export class CreateBlogPostDto {
   @IsString()
+  @IsNotEmpty()
   title: string;
 
   @IsString()
+  @IsNotEmpty()
   body?: string;
 }
