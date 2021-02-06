@@ -1,13 +1,7 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 
-import { User } from '../../users/entities/user.entity';
+import { Users } from '../../users/entities/users.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
@@ -27,7 +21,6 @@ export class BlogPost {
   body: string;
 
   @ApiProperty()
-  @ManyToOne(() => User, (user) => user.id)
-  @JoinColumn()
-  user: User;
+  @ManyToOne(() => Users, (users) => users.posts)
+  user: Users;
 }

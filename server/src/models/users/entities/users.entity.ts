@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   Unique,
+  JoinColumn,
 } from 'typeorm';
 
 import { IsNotEmpty } from 'class-validator';
@@ -13,14 +14,14 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 @Unique(['username'])
-export class User {
+export class Users {
   /**
    * The name of the User
    * @example Kohki
    */
 
   @ApiProperty()
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @ApiProperty()
@@ -34,6 +35,11 @@ export class User {
   password: string;
 
   @ApiProperty()
+  @Column({ nullable: true })
+  created_at: string;
+
+  @ApiProperty()
   @OneToMany(() => BlogPost, (post) => post.user)
-  user: BlogPost;
+  @JoinColumn({ name: 'user_id' })
+  posts: BlogPost[];
 }
